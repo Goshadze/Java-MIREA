@@ -1,0 +1,10 @@
+[
+  {
+    "label": "Run $ZED_STEM",
+    "command": "javac \"$ZED_FILE\" -d \"$ZED_DIRNAME\" && java -cp \"$ZED_DIRNAME\" \"$ZED_STEM\"",
+    "cwd": "$ZED_DIRNAME",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  }
+]
