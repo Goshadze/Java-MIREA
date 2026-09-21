@@ -1,0 +1,17 @@
+# Compiled class files
+*.class
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Maven / Gradle (on the off chance a future practice uses them)
+target/
+build/
+.gradle/
+
+# OS
+.DS_Store
