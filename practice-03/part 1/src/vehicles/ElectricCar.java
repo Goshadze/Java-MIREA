@@ -26,6 +26,6 @@ public class ElectricCar extends Car implements ElectricVehicle {
     }
 
     public String toString(){
-        return super.toString() + " " + batteryCapacity;
+        return super.toString() + ", ёмкость батареи: " + batteryCapacity;
     }
 }

@@ -40,6 +40,7 @@ public class RoadBike extends Bike implements RoadParts {
 	public void printDescription()
 	{
 		super.printDescription();
-		System.out.println("This Roadbike bike has " + this.tyreWidth + "mm tyres and a post height of " + this.postHeight + ".");
+		System.out.println("Шоссейный велосипед. Ширина шины: " + this.tyreWidth
+                + " мм, высота подседельного штыря: " + this.postHeight + ".");
 	}//end method printDescription
 }//end class RoadBike

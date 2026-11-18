@@ -80,6 +80,16 @@ public abstract class Vehicle {
     }
 
     public String toString(){
-        return vehicleType() + ": " + model + " " + license + " " + color + " " + year + " " + ownerName + " " + insuranceNumber + " " + engineType;
+        String type = vehicleType();
+        if ("Car".equals(type)) type = "Автомобиль";
+        if ("Electric Car".equals(type)) type = "Электромобиль";
+
+        String engine = engineType;
+        if ("Combustion".equals(engine)) engine = "внутреннего сгорания";
+        if ("Electric".equals(engine)) engine = "электродвигатель";
+
+        return type + ": " + model + ", госномер: " + license + ", цвет: " + color
+                + ", год выпуска: " + year + ", владелец: " + ownerName
+                + ", страховой номер: " + insuranceNumber + ", двигатель: " + engine;
     }
 }

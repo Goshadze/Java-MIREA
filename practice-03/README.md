@@ -24,7 +24,7 @@
 ### Ответы на вопросы README
 
 1. **Примитивный тип для полей** — `int`: NumGears в Bike, frameSize в MountainBike, tyreWidth и postHeight в RoadBike.
-2. **Конкатенация строк** — в методах printDescription(), например в Bike: `"\n" + MAKE + "\n" + "This bike has " + this.handleBars + ...`.
+2. **Конкатенация строк** — в методах printDescription(), например в Bike: `"\n" + MAKE + "\n" + "Руль: " + this.handleBars + ...`.
 3. **Ссылки на созданные объекты** — bike1, bike2, bike3, bike4 (в BikeDriver).
 4. **Конструкторы** — Bike: 2 (по умолчанию и с параметрами); RoadBike: 3 (по умолчанию, только postHeight, полный); MountainBike: 2 (по умолчанию и полный); BikeDriver: 0 объявленных, 1 неявный конструктор без параметров.
 5. **Наследование** — суперкласс Bike; подклассы RoadBike и MountainBike.
@@ -41,6 +41,8 @@
 | ещё | tyreWidth = 20, postHeight = 22 | suspension = RockShox XC32, type = Pro, frameSize = 19 |
 
 [Конспект к защите](THEORY-AND-RESULTS.md)
+
+Подписи в консоли переведены на русский. Названия и характеристики велосипедов сохранены из исходного проекта.
 
 ## Запуск
 
