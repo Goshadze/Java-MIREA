@@ -1,73 +1,70 @@
 # Практическая работа №5
 
-Композиция, наследование, стек и клонирование в Java.
+Дженерики, алгоритмы поиска, стек и клонирование.
 
-- `Algorithms` реализует удаление повторов через `contains`, линейный поиск и поиск максимума в одно- и двумерном массивах. `Circle` сравнивается по радиусу.
-- `GenericStack<E>` хранит элементы в массиве, удваивая его при заполнении. `InheritedGenericStack<E>` наследует `ArrayList<E>`. Клиент считывает пять строк и выводит их в обратном порядке дважды: из унаследованного стека (задание №2) и из `InheritedStack`, унаследованного варианта `MyStack` из задания.
-- `MyStack` содержит `ArrayList<Object>` и реализует стек через композицию. `clone()` создаёт отдельный список для копии.
-- `InheritedStack` наследуется от `ArrayList<Object>` и реализует те же операции стека. Демонстрирует необобщённый вариант.
-- `StackTest` проверяет операции, ошибки при пустом стеке и независимость списков после клонирования.
+## Задание 1: алгоритмы (`src/generics/`)
 
-Копируются сами списки, но не объекты, на которые ссылаются их элементы. Для неизменяемых строк это безопасно; изменяемые объекты в обоих стеках останутся общими.
+- `Algorithms` — четыре обобщённых метода: `removeDuplicates` (снимает повторы через `contains`), `linearSearch` (позиция элемента или -1), `max` для одномерного и двумерного массивов через `compareTo()`.
+- `Circle` — класс с полем `radius`, реализует `Comparable<Circle>`: сравнение по радиусу.
+- `Main` — демонстрирует все четыре метода.
 
-[Конспект к защите](THEORY-AND-RESULTS.md)
+## Задание 2: GenericStack (`src/genericstack/`)
+
+- `GenericStack<E>` — стек на массиве: перед `push` проверяется заполненность, при переполнении создаётся массив вдвое больше и элементы переносятся.
+- `InheritedGenericStack<E>` — стек наследуется от `ArrayList<E>` (отношение is-a).
+- `Main` — запрашивает пять строк и выводит их в обратном порядке; ниже показывает удвоение массива при переполнении.
+
+## Часть 2: MyStack и клонирование (`src/mystack/`)
+
+- `MyStack` — композиция: содержит `ArrayList<Object>` как поле и реализует `clone()` с глубокой копией списка (копия получает свой собственный `ArrayList`).
+- `InheritedMyStack` — тот же стек, но наследование от `ArrayList<Object>`.
+- `Main` — пять строк в обратном порядке из унаследованного стека, затем демонстрация глубокой копии: `push` в копию не меняет оригинал.
 
 ## Запуск из этой папки
 
 ```fish
-./run.sh
-```
-
-## Проверка
-
-```fish
-mkdir -p /tmp/java-practice-05-test
-javac -encoding UTF-8 -d /tmp/java-practice-05-test src/stack/*.java tests/StackTest.java
-java -ea -cp /tmp/java-practice-05-test StackTest
+./run.sh        # меню выбора задания
+./run.sh 1      # алгоритмы
+./run.sh 2      # GenericStack
+./run.sh 3      # MyStack
 ```
 
 ## UML
 
 ```mermaid
 classDiagram
+    class GenericStack~E~ {
+        -E[] elements
+        -int size
+        +push(E o) void
+        +pop() E
+        +peek() E
+        +getSize() int
+        +isEmpty() boolean
+    }
+    ArrayList <|-- InheritedGenericStack
+    class InheritedGenericStack~E~ {
+        +push(E o) void
+        +pop() E
+        +peek() E
+        +getSize() int
+    }
+
     class MyStack {
         -ArrayList~Object~ list
-        +isEmpty() boolean
-        +getSize() int
-        +peek() Object
+        +push(Object o) void
         +pop() Object
-        +push(Object) void
+        +peek() Object
+        +getSize() int
+        +isEmpty() boolean
         +clone() MyStack
     }
-    class InheritedStack {
-        +getSize() int
-        +peek() Object
+    MyStack o-- ArrayList : композиция
+    ArrayList <|-- InheritedMyStack
+    class InheritedMyStack {
+        +push(Object o) void
         +pop() Object
-        +push(Object) void
-        +clone() InheritedStack
-    }
-    class ArrayList~Object~
-    MyStack *-- "1" ArrayList~Object~ : list
-    ArrayList~Object~ <|-- InheritedStack
-```
-
-```mermaid
-classDiagram
-    class GenericStack~E~ {
-        -Object[] elements
-        -int size
-        +push(E) void
-        +peek() E
-        +pop() E
-        +getSize() int
-        +isEmpty() boolean
-    }
-    class InheritedGenericStack~E~ {
-        +push(E) void
-        +peek() E
-        +pop() E
+        +peek() Object
         +getSize() int
     }
-    class ArrayList~E~
-    ArrayList~E~ <|-- InheritedGenericStack
 ```
